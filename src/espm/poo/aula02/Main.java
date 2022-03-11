@@ -25,5 +25,16 @@ public class Main {
         p2.imprimir();
         p3.imprimir();
 
+        System.out.println(p1 == p2);
+        System.out.println(p1 == p3);
+
+        String nome = "Humberto";
+        if (nome.equals("Humberto")){
+            System.out.println("Levantar da cama!");
+        }
+
+
+
+
     }
 }
