@@ -18,6 +18,7 @@ public class Banco {
 
     public void addCliente(Cliente c){
         this.clientes.add(c);
+        this.contas.add(c.getConta());
     }
 
     public List<Cliente> getClientes(){
@@ -30,6 +31,10 @@ public class Banco {
 
     public List<Conta> getContas(){
         return contas;
+    }
+
+    public void setContas(List<Conta> contas) {
+        this.contas = contas;
     }
     
 }

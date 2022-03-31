@@ -1,6 +1,5 @@
 package espm.poo.aula05_ex2;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -16,22 +15,28 @@ public class Main {
         boolean exit = false;
 
         while(!exit){
-            System.out.print("ESPM > ");
-            String input = scan.nextLine().trim().toLowerCase(); //tirar espaço-> trim()
+            try{
+                System.out.print("ESPM > ");
+                String input = scan.nextLine().trim().toLowerCase(); //tirar espaço-> trim()
 
-            if("".equals(input)){
-            } else if("exit".equals(input)) {
-                exit = true;
-            } else if("help".equals(input)){
-                help();
-            } else if("list".equals(input)){
-                listCostumers(banco);
-            } else if("add".equals(input)){
-                addCostumer(banco);
-            } else {
-                System.err.println("Comando inválido!");
-            }
-            
+                if("".equals(input)){
+                } else if("exit".equals(input)) {
+                    exit = true;
+                } else if("help".equals(input)){
+                    help();
+                } else if("list".equals(input)){
+                    listCostumers(banco);
+                } else if("add".equals(input)){
+                    addCostumer(banco);
+                } else if("find".equals(input)){
+                    throw new UnsupportedOperationException(); //levantar exceção o código para
+                } else {
+                    System.err.println("Comando inválido!");
+                }
+                
+            } catch(UnsupportedOperationException e) {
+                e.printStackTrace(); //tente (try) -> exceção (catch)
+            } 
         }
 
         System.out.println("Bye!");
@@ -76,9 +81,11 @@ public class Main {
         c.setNome(nome);
         c.setCpf(cpf);
 
+
         banco.addCliente(c);
         //System.out.println("Nome: " + c.getNome());
         //System.out.println("CPF: " + c.getCpf());
+
         
         
     }
