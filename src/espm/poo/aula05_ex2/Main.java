@@ -79,7 +79,7 @@ public class Main {
         cpf = scan.nextLine();
 
         c.setNome(nome);
-        c.setCpf(cpf);
+        //c.setCpf(cpf);
 
 
         banco.addCliente(c);
