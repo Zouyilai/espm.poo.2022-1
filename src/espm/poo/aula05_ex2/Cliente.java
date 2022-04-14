@@ -1,8 +1,10 @@
 package espm.poo.aula05_ex2;
 
-public class Cliente {
-    
+public abstract class Cliente {
+    //nao permite criação de objeto do tipo Cliente -> apenas PJ e PF
+
     private String nome;
+    private String sobrenome;
     private Conta conta;
 
     public Cliente(){
@@ -10,7 +12,9 @@ public class Cliente {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        String[] nomes = nome.split(" ");
+        this.nome = nomes[0];
+        this.sobrenome = nomes[nomes.length-1];
     }
 
     public String getNome() {
@@ -19,6 +23,14 @@ public class Cliente {
 
     public Conta getConta() {
         return conta;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
     }
 
     @Override

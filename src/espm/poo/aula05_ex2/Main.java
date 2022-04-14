@@ -56,8 +56,19 @@ public class Main {
 
     private static void listCostumers(Banco banco){//passa o objeto como referência 
         
-        
-        banco.getClientes().forEach(c -> System.out.println(c));
+        banco.getClientes().forEach(c -> {
+            
+            if(c instanceof PessoaFisica){
+                PessoaFisica pf = (PessoaFisica) c;
+                System.out.println(pf);
+            } else if (c instanceof PessoaJuridica){
+                PessoaJuridica pj = (PessoaJuridica) c;
+                System.out.println(pj);
+            }
+            /*String tp = c instanceof PessoaFisica ? "f": "j";
+            System.out.println(tp +" "+ c);*/
+
+        });
         
         /*for(Cliente c : banco.getClientes()){ 
             System.out.println(c); //-> mesma função
@@ -67,26 +78,61 @@ public class Main {
     
     private static void addCostumer(Banco banco) {
         Scanner scan = new Scanner(System.in);
-
-        Cliente c = new Cliente();
-
-        String nome, cpf;
-
+        
         System.out.print("Nome: ");
-        nome = scan.nextLine();
+        String nome = scan.nextLine();
 
-        System.out.print("CPF: ");
-        cpf = scan.nextLine();
+        TipoPessoa tipoPessoa = inputTipoCliente();
 
-        c.setNome(nome);
+        Cliente c = null;
+        switch(tipoPessoa) {
+            case Fisica:
+                System.out.print("CPF: ");
+                String cpf = scan.nextLine();
+
+                PessoaFisica pf = new PessoaFisica();
+
+                pf.setCpf(cpf);
+                c = pf;
+                break;
+            case Juridica:
+                PessoaJuridica pj = new PessoaJuridica();
+
+                System.out.print("CNPJ: ");
+                String cnpj = scan.nextLine();
+
+                pj.setCnpj(cnpj);
+                c = pj;
+                break;
+        }
+
+
         //c.setCpf(cpf);
 
+        c.setNome(nome);
 
         banco.addCliente(c);
         //System.out.println("Nome: " + c.getNome());
         //System.out.println("CPF: " + c.getCpf());
+        
+    }
 
-        
-        
+
+    private static TipoPessoa inputTipoCliente(){
+        Scanner scan = new Scanner(System.in);
+
+        String tp = "";
+
+        while(!tp.equals("j") && !tp.equals("f")){
+
+            System.out.println("Tipo do Cliente? [F|J]");
+            tp = scan.nextLine().toLowerCase();
+
+            if(!tp.equals("j") && !tp.equals("f")){
+                System.out.println("F: Pessoa Física | J: Pessoa Jurídica");
+            }
+        }
+
+        return tp.equals("f") ? TipoPessoa.Fisica : TipoPessoa.Juridica;
     }
 }
