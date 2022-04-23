@@ -91,8 +91,6 @@ public class Main {
                 String cpf = scan.nextLine();
 
                 PessoaFisica pf = new PessoaFisica();
-
-                pf.setCpf(cpf);
                 c = pf;
                 break;
             case Juridica:
